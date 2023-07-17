@@ -36,4 +36,35 @@ router.get('/:id', (req, res) => {
   )
 })
 
+router.post('/', (req, res) => {
+  const body = req.body;
+
+  res.json({
+    message: 'Product created',
+    product: body
+  })
+})
+
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  res.json({
+    message: 'Product updated',
+    product: {
+      id,
+      ...body
+    }
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+
+  res.json({
+    message: 'Product deleted',
+    id
+  })
+})
+
 module.exports = router
