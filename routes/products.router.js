@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
   })
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const body = req.body;
@@ -51,11 +51,8 @@ router.put('/:id', async (req, res) => {
 
     res.json(productUpdated)
   } catch (error) {
-    res.status(404).json({
-      message: error.message
-    })
+    next(error)
   }
-
 })
 
 router.delete('/:id', async (req, res) => {

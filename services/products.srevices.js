@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker')
+const boom = require('@hapi/boom')
 
 class ProductServices {
   constructor() {
@@ -13,7 +14,8 @@ class ProductServices {
         id: faker.string.uuid(),
         name: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
-        image: faker.image.url()
+        image: faker.image.url(),
+        isBlock: faker.datatype.boolean()
       })
     }
   }
@@ -36,15 +38,26 @@ class ProductServices {
 
   async findOne(id) {
     // const total = this.getTotal(); // This error is just a example for how use middlewares
-    return this.products.find(product => product.id === id)
+    const product = this.products.find(product => product.id === id)
+
+    if(!product)
+      throw boom.notFound('Product not found')
+
+    if(product.isBlock)
+      throw boom.conflict('Product is blocked')
+
+    return product;
   }
 
   async update(id, product) {
     const index = this.products.findIndex(product => product.id === id);
 
     if(index === -1) {
-      throw new Error('Product not found')
+      throw boom.notFound('Product not found')
     }
+
+    if(product.isBlock)
+      throw boom.conflict('Product is blocked')
 
     const currentProduct = this.products[index];
     this.products[index] = {
@@ -59,7 +72,7 @@ class ProductServices {
     const index = this.products.findIndex(product => product.id === id);
 
     if(index === -1) {
-      throw new Error('Product not found')
+      throw boom.notFound('Product not found')
     }
 
     this.products.splice(index, 1)
