@@ -35,6 +35,7 @@ class ProductServices {
   }
 
   async findOne(id) {
+    // const total = this.getTotal(); // This error is just a example for how use middlewares
     return this.products.find(product => product.id === id)
   }
 
