@@ -26,3 +26,9 @@
 4. Remove logs
 5. Security (Helmet)
 6. Testing
+
+## Alternative to Heroku
+1. [Adiós Heroku! 7 alternativas mucho mejores que Heroku](https://www.youtube.com/watch?v=q--_5p15HnU)
+2. [Alternativas Fáciles y Gratuitas a Heroku](https://www.youtube.com/watch?v=BqLVnocxxF0)
+3. [Railway](https://railway.app/)
+3. [Deploy server NODE con EXPRESS en RAILWAY](https://www.youtube.com/watch?v=ewoIdVjakns)
