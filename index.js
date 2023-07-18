@@ -13,11 +13,11 @@ const CORS_options = {
 
 const app = express()
 
-const SERVER_PORT = 3000;
+const SERVER_PORT = process.env.NODE_PORT || 3000;
 
 app.use(express.json())
 
-app.use(cors());
+app.use(cors(CORS_options));
 
 app.get('/', (req, res) =>{
   res.send('Server with ExpressJS')
