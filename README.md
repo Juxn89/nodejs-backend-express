@@ -18,3 +18,11 @@
 - [Express Slash](https://github.com/ericf/express-slash).
 - [Passport](https://github.com/jaredhanson/passport): Setup severals authentications.
 - [**Others populars middlewares**](http://expressjs.com/en/resources/middleware.html).
+
+## Considerations before deploy to **Production/Live**
+1. CORS
+2. Https
+3. Build processes
+4. Remove logs
+5. Security (Helmet)
+6. Testing
