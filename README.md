@@ -32,3 +32,19 @@
 2. [Alternativas Fáciles y Gratuitas a Heroku](https://www.youtube.com/watch?v=BqLVnocxxF0)
 3. [Railway](https://railway.app/)
 3. [Deploy server NODE con EXPRESS en RAILWAY](https://www.youtube.com/watch?v=ewoIdVjakns)
+
+## Docker
+### Installations
+- [Installation on Windows](https://docs.docker.com/desktop/install/windows-install/)
+- [Installation on Debian](https://docs.docker.com/engine/install/debian/)
+
+### Commands
+1. ```docker-compose up -d service_name```
+  - **up**: Run docker service.
+  - **-d**: Detach, run on background.
+  - **service_name**: Name of service in ```docker-compose.yml``` file
+2. ```docker-compose ps```: List all services running
+3. ```docker-compose down```: Stop all docker services running
+
+If you wanna use environment variable with Docker, you can use the next command:
+```docker compose --env-file [dir_name] up -d```
