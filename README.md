@@ -47,4 +47,6 @@
 3. ```docker-compose down```: Stop all docker services running
 
 If you wanna use environment variable with Docker, you can use the next command:
-```docker compose --env-file [dir_name] up -d```
+```docker-compose --env-file [dir_name] up -d```
+
+4. ````docker-compose exec postgres bash``
