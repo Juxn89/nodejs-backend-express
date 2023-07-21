@@ -1,5 +1,6 @@
 # Customs ignores
 postgres_data
+mysql_data
 
 # Logs
 logs
