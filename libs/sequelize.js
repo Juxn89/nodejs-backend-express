@@ -4,15 +4,13 @@ const setupModels = require('../db/models/')
 
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
-const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbDatabase}`
+const URI = `${config.dbEngine}://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbDatabase}`
 
 const sequelize = new Sequelize(URI, {
-  dialect: 'mysql',
+  dialect: `${config.dbEngine}`,
   logging: true
 })
 
 setupModels(sequelize)
-
-sequelize.sync()
 
 module.exports = sequelize
