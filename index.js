@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const routesAPI = require('./routes/index')
-const { errorHandler, logError, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler')
+const { errorHandler, logError, boomErrorHandler, ormErrorHandler, databaseError } = require('./middlewares/error.handler')
 
 const app = express()
 
@@ -27,6 +27,7 @@ app.get('/', (req, res) =>{
 routesAPI(app);
 
 app.use(logError);
+app.use(databaseError);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);

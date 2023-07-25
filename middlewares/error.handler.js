@@ -1,13 +1,10 @@
-const { ValidationError } = require("sequelize");
+const { ValidationError, DatabaseError } = require("sequelize");
 
 const logError = (err, req, res, next) => {
-  console.log('logErrors');
-  console.error(err);
   next(err)
 }
 
 const errorHandler = (error, req, res, next) => {
-  console.error('errorHandler')
   res.status(500).json({
     message: error.message,
     stack: error.stack
@@ -32,13 +29,27 @@ const ormErrorHandler = (err, req, res, next) => {
       errors: err.errors
     })
   }
+  else{
+    next(err)
+  }
+}
 
-  next(err)
+const databaseError = (error, req, res, next) => {
+  if(error instanceof DatabaseError) {
+    res.status(409).json({
+      statusCode: 409,
+      message: error.name,
+      errors: error.errors
+    })
+  }
+
+  next(error)
 }
 
 module.exports = {
   logError,
   errorHandler,
   boomErrorHandler,
-  ormErrorHandler
+  ormErrorHandler,
+  databaseError
 };
