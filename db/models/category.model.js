@@ -29,7 +29,7 @@ const CATEGORY_SCHEMA = {
 class Category extends Model {
   static associate(models) {
     // Relation Many to 1
-    this.hasMany(models.Products, {
+    this.hasMany(models.Product, {
       as: 'products',
       foreignKey: 'categoryId'
     })
