@@ -40,7 +40,13 @@ const CUSTOMER_SCHEMA = {
 
 class Customer extends Model {
   static associate(models) {
-    this.belongsTo(models.User, { as: 'user'}) // 1 to 1
+    // 1 to 1
+    this.belongsTo(models.User, { as: 'user'})
+    // 1 to many
+    this.hasMany(models.Order, {
+      as: 'orders',
+      foreignKey: 'customerId'
+    })
   }
 
   static config(sequelize) {
