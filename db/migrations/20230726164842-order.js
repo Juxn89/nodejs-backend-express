@@ -1,10 +1,10 @@
 'use strict';
 
-const { orderSchema, ORDER_TABLE } = require('../models/order.model')
+const { OrderSchema, ORDER_TABLE } = require('../models/order.model')
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable(ORDER_TABLE, orderSchema)
+    await queryInterface.createTable(ORDER_TABLE, OrderSchema)
   },
 
   async down (queryInterface, Sequelize) {
