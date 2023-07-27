@@ -33,8 +33,8 @@ class ProductServices {
 
     const { limit, offset } = query;
     if(limit && offset) {
-      options.limit = limit;
-      options.offset = offset
+      options.limit = parseInt(limit);
+      options.offset = parseInt(offset);
     }
 
     const data = await models.Product.findAll(options);
