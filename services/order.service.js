@@ -10,7 +10,8 @@ class OrderService {
   }
 
   async find() {
-    return [];
+    const orders = await models.Order.findAll();
+    return orders;
   }
 
   async findOne(id) {
@@ -26,6 +27,11 @@ class OrderService {
 
   async delete(id) {
     return { id };
+  }
+
+  async addItem(data) {
+    const newItem = await models.OrderProdudct.create(data);
+    return newItem;
   }
 }
 
