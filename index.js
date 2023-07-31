@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const routesAPI = require('./routes/index')
+const { CheckApiKey } = require('./middlewares/auth.handler')
 const { errorHandler, logError, boomErrorHandler, ormErrorHandler, databaseError } = require('./middlewares/error.handler')
 
 const app = express()
@@ -22,6 +23,10 @@ app.use(cors(CORS_options));
 
 app.get('/', (req, res) =>{
   res.send('Server with ExpressJS')
+})
+
+app.get('/private-route', CheckApiKey, (req, res) =>{
+  res.send('I am a private page >=)')
 })
 
 routesAPI(app);

@@ -6,7 +6,8 @@ const CONFIG = {
   dbUser: process.env.DB_USER,
   dbPassword: process.env.DB_PASSWORD,
   dbDatabase: process.env.DB_NAME,
-  dbEngine: process.env.DATABASE_ENGINE
+  dbEngine: process.env.DATABASE_ENGINE,
+  apiKey: process.env.API_KEY
 }
 
 module.exports = CONFIG
