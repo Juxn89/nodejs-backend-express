@@ -39,11 +39,12 @@ const databaseError = (error, req, res, next) => {
     res.status(409).json({
       statusCode: 409,
       message: error.name,
-      errors: error.errors
+      error
     })
   }
-
-  next(error)
+  else {
+    next(error)
+  }
 }
 
 module.exports = {

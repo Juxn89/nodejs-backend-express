@@ -21,7 +21,7 @@ const CATEGORY_SCHEMA = {
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'crated_at',
+    field: 'created_at',
     defaultValue: Sequelize.NOW
   }
 }
