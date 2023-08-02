@@ -7,7 +7,8 @@ const CONFIG = {
   dbPassword: process.env.DB_PASSWORD,
   dbDatabase: process.env.DB_NAME,
   dbEngine: process.env.DATABASE_ENGINE,
-  apiKey: process.env.API_KEY
+  apiKey: process.env.API_KEY,
+  jwtSecret: process.env.JWT_SECRET
 }
 
 module.exports = CONFIG
