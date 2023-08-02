@@ -52,3 +52,6 @@ If you wanna use environment variable with Docker, you can use the next command:
 4. ````docker-compose exec postgres bash``
 
 **Note:** Create the following folders in root: ```postgres_data``` and ```mysql_data```
+
+### Rerefences
+- **Generate random key generators:** [KeyGen.io](https://keygen.io/)

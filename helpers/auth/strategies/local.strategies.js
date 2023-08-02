@@ -21,7 +21,6 @@ const localStrategy = new Strategy({
       done(boom.unauthorized(), false)
 
     delete user.password;
-
     done(null, user)
   } catch (error) {
     done(error, false)

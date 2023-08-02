@@ -21,7 +21,7 @@ const CORS_options = {
 
 app.use(cors(CORS_options));
 
-require('./helpers/auth')
+require('./helpers/auth/')
 
 app.get('/', (req, res) =>{
   res.send('Server with ExpressJS')
