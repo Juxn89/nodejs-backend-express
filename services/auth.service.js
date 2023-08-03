@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const CONFIG = require('../config/config');
 const UserService = require('../services/user.service')
 const { verifyPassword } = require('../helpers/index');
-const { emailHelper, tokenSign } = require('../helpers/index')
+const { emailHelper, tokenSign, tokenVerify, hashPassword } = require('../helpers/index')
 
 const service = new UserService();
 
@@ -72,6 +72,27 @@ class AuthService {
       `<b>Enter in this link => ${ customLink }</b>`);
 
     return emailResponse;
+  }
+
+  async changePassword(token, newPassword) {
+    try {
+      const PAYLOAD = tokenVerify(token)
+      const user = await service.findOne(PAYLOAD.SUB)
+
+      if(!user)
+        throw boom.unauthorized()
+
+      if(user.recoveryToken !== token)
+        throw boom.unauthorized()
+
+      const passwordHash = hashPassword(newPassword);
+      await service.update(user.id, { recoveryToken: null, password: passwordHash })
+
+      return { message: 'Password changed' }
+
+    } catch (error) {
+      throw boom.unauthorized()
+    }
   }
 }
 

@@ -10,6 +10,42 @@
 			"name": "API Rest con Express",
 			"item": [
 				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user_seller@example.com\",\r\n    \"password\": \"password_created\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Users",
 					"item": [
 						{
@@ -62,7 +98,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"user_email@example.com\",\r\n    \"password\": \"password_created\",\r\n    \"role\": \"Admin\"\r\n}",
+									"raw": "{\r\n    \"email\": \"user_seller@example.com\",\r\n    \"password\": \"password_created\",\r\n    \"role\": \"seller\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -429,8 +465,49 @@
 					"name": "Categories",
 					"item": [
 						{
-							"name": "Get all categories",
+							"name": "Get all categories | Unauthorized",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJyb2xlIjoic2VsbGVyIiwiaWF0IjoxNjkwOTk3ODQxfQ.kdXASUFE0bBhL6_WC24IARDirarYikAz6dzhHhTboyc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all categories | Authorized",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2OTA5OTUyOTl9.jn57C2L7FBTHVsopGxJbm52hn6bg0hoT7QYkQAEsbak",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -475,10 +552,16 @@
 							"name": "Create Category",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2OTA5OTUyOTl9.jn57C2L7FBTHVsopGxJbm52hn6bg0hoT7QYkQAEsbak",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"category #2\",\r\n    \"image\": \"http://placeimg.com/640/480\"\r\n}",
+									"raw": "{\r\n    \"name\": \"category #16\",\r\n    \"image\": \"http://placeimg.com/640/480\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -704,6 +787,71 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "My orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2OTA5OTUyOTl9.jn57C2L7FBTHVsopGxJbm52hn6bg0hoT7QYkQAEsbak",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/profile/my-orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"profile",
+										"my-orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "private-route",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api",
+								"value": "123",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/private-route",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"private-route"
+							],
+							"query": [
+								{
+									"key": "api",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
