@@ -1,8 +1,9 @@
 const express = require('express');
 const passport = require('passport')
-const { tokenSign } = require('../helpers/index')
+const AuthService = require('../services/auth.service')
 
 const router = express.Router();
+const service = new AuthService();
 
 router.get('/login', (req, res, next) => {
   res.status(200).json({
@@ -15,14 +16,7 @@ router.post('/login',
   async (req, res, next) => {
     try {
 
-      const user = req.user;
-      const tokenPayload = {
-        sub: user.id,
-        role: user.role
-
-      }
-
-      const token = tokenSign(tokenPayload)
+      const { user, token } = service.singToken(req.user)
 
       res.json({
         user,
@@ -33,5 +27,17 @@ router.post('/login',
     }
   }
 );
+
+router.post('/recovery',
+  async (req, res, next) => {
+    try {
+      const { email } = req.body;
+      const response = await service.sendMail(email);
+
+      res.json(response)
+    } catch (error) {
+      next(error)
+    }
+})
 
 module.exports = router;
