@@ -56,3 +56,4 @@ If you wanna use environment variable with Docker, you can use the next command:
 ### Rerefences
 - **Generate random key generators:** [KeyGen.io](https://keygen.io/)
 - **Access control NPM:** [accesscontrol](https://www.npmjs.com/package/accesscontrol)
+- **Nodemailer NPM | Send emails:** [Nodemailer](http://nodemailer.com/about/)
